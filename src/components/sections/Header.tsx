@@ -5,7 +5,6 @@ import {
   Twitter,
   Instagram,
   Youtube,
-  ChevronDown,
   Menu,
   X,
 } from "lucide-react";
@@ -30,87 +29,87 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-[#272727] border-b border-gray-200 shadow-sm">
-      {/* ===== TOP SECTION ===== */}
-      <div className="max-w-7xl mx-auto px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
+    <header className="w-full sticky top-0 z-50 bg-[#272727] shadow-sm border-b border-gray-800">
+      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
 
-        {/* LEFT: Logo */}
-        <div className="flex items-center gap-2">
-          <a href="/">
-            <img src="./assets/Image/mp-logo-dark.svg" className="w-24" />
-          </a>
-        </div>
+        {/* Logo */}
+        <a href="/">
+          <img src="/assets/Image/mp-logo-dark.svg" className="w-24" />
+        </a>
 
-        {/* CENTER: Desktop Nav */}
-        <div className="flex flex-col items-center text-center">
-          <nav className="hidden md:flex items-center gap-6 text-[15px] font-medium text-white relative">
-            {mainMenu.map((item) => (
-              <a
-                key={item.name}
-                href={item.link}
-                className="hover:text-[#DEBB70] transition"
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
-        </div>
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex gap-6 text-white text-[15px] font-medium">
+          {mainMenu.map((item) => (
+            <a
+              key={item.name}
+              href={item.link}
+              className="hover:text-[#DEBB70] transition"
+            >
+              {item.name}
+            </a>
+          ))}
+        </nav>
 
-        {/* RIGHT: Socials */}
+        {/* Desktop Social Icons */}
         <div className="hidden md:flex items-center gap-3 text-[#DEBB70]">
-          <a href={socialLinks.facebook} target="_blank">
-            <Facebook className="w-5 h-5" />
-          </a>
-          <a href={socialLinks.twitter} target="_blank">
-            <Twitter className="w-5 h-5" />
-          </a>
-          <a href={socialLinks.instagram} target="_blank">
-            <Instagram className="w-5 h-5" />
-          </a>
-          <a href={socialLinks.youtube} target="_blank">
-            <Youtube className="w-5 h-5" />
-          </a>
+          <a href={socialLinks.facebook} target="_blank"><Facebook size={20} /></a>
+          <a href={socialLinks.twitter} target="_blank"><Twitter size={20} /></a>
+          <a href={socialLinks.instagram} target="_blank"><Instagram size={20} /></a>
+          <a href={socialLinks.youtube} target="_blank"><Youtube size={20} /></a>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden border border-gray-300 rounded-md p-2 text-white"
+          onClick={() => setMobileOpen(true)}
+          className="md:hidden text-white p-2 border rounded-md border-gray-400"
         >
-          {mobileOpen ? <X /> : <Menu />}
+          <Menu size={22} />
         </button>
       </div>
 
-      {/* ===== MOBILE MENU ===== */}
+      {/* ===== MOBILE OFFCANVAS ===== */}
+      {/* Overlay */}
+      {mobileOpen && (
+        <div
+          onClick={() => setMobileOpen(false)}
+          className="fixed inset-0 bg-black/50 z-40"
+        />
+      )}
+
+      {/* Sidebar */}
       <div
-        className={`md:hidden bg-white border-t border-gray-200 px-6 py-4 space-y-3 text-[15px] font-medium text-gray-800 transition-all duration-300 ${
-          mobileOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+        className={`fixed top-0 left-0 h-full w-72 bg-white z-50 p-6 shadow-lg transform transition-transform duration-300 ${
+          mobileOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {mainMenu.map((item) => (
-          <a
-            key={item.name}
-            href={item.link}
-            className="block hover:text-[#6BA642]"
-          >
-            {item.name}
-          </a>
-        ))}
+        {/* Close Button */}
+        <button
+          onClick={() => setMobileOpen(false)}
+          className="absolute top-4 right-4 p-2 rounded-md bg-gray-200"
+        >
+          <X size={20} />
+        </button>
 
-        {/* Mobile Socials */}
-        <div className="flex items-center gap-3 mt-4 text-[#6BA642]">
-          <a href={socialLinks.facebook} target="_blank">
-            <Facebook className="w-5 h-5" />
-          </a>
-          <a href={socialLinks.twitter} target="_blank">
-            <Twitter className="w-5 h-5" />
-          </a>
-          <a href={socialLinks.instagram} target="_blank">
-            <Instagram className="w-5 h-5" />
-          </a>
-          <a href={socialLinks.youtube} target="_blank">
-            <Youtube className="w-5 h-5" />
-          </a>
+        {/* Links */}
+        <div className="mt-10 space-y-4 text-gray-800 text-[16px] font-medium">
+          {mainMenu.map((item) => (
+            <a
+              key={item.name}
+              href={item.link}
+              className="block hover:text-[#6BA642] transition"
+              onClick={() => setMobileOpen(false)}
+            >
+              {item.name}
+            </a>
+          ))}
+        </div>
+
+        {/* Social Icons */}
+        <div className="flex items-center gap-4 mt-6 text-[#6BA642]">
+          <a href={socialLinks.facebook} target="_blank"><Facebook size={22} /></a>
+          <a href={socialLinks.twitter} target="_blank"><Twitter size={22} /></a>
+          <a href={socialLinks.instagram} target="_blank"><Instagram size={22} /></a>
+          <a href={socialLinks.youtube} target="_blank"><Youtube size={22} /></a>
         </div>
       </div>
     </header>
