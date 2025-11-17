@@ -32,9 +32,9 @@ const Footer = () => {
           {/* Logo ko image se replace kar diya jo aapne image mein dikhaya hai */}
           {/* Yahan aapka 'UB Architects' logo aayega */}
           <img
-            src="/assets/Image/mp-logo-dark.svg"  // Agar Next.js Image component use nahi kar rahe to .src lagana padega
+            src="/assets/Image/mp_logo.svg"  // Agar Next.js Image component use nahi kar rahe to .src lagana padega
             alt="UB Architects Logo"
-            className=" w-32 mb-4" // Logo size adjust kiya
+            className="w-56 mb-4" // Logo size adjust kiya
           />
           <p className="mt-4 text-gray-400 leading-relaxed text-base">
             Enriching Lives, One Design at a Time

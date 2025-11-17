@@ -34,7 +34,7 @@ const Header = () => {
 
         {/* Logo */}
         <a href="/">
-          <img src="/assets/Image/mp-logo-dark.svg" className="w-24" />
+          <img src="/assets/Image/mp_logo.svg" className="w-56 h-16" />
         </a>
 
         {/* Desktop Nav */}
